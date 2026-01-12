@@ -2,36 +2,70 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - LabLink</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-lablink d-flex align-items-center" style="height: 100vh;">
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <div class="card shadow-lg p-4">
+                <div class="card shadow-lg p-4 border-0">
                     <div class="text-center mb-4">
                         <h2 class="fw-bold text-primary">LABLINK</h2>
-                        <p class="text-muted">Acesse sua conta</p>
+                        <p class="text-muted">Gestão Laboratorial Inteligente</p>
                     </div>
-                    <form>
+
+                    <div class="d-grid gap-2 mb-4">
+                        <button onclick="loginSimulado('Google')" class="btn btn-outline-danger">
+                            <i class="bi bi-google me-2"></i> Entrar com Google
+                        </button>
+                        <button onclick="loginSimulado('Microsoft')" class="btn btn-outline-primary">
+                            <i class="bi bi-microsoft me-2"></i> Entrar com Microsoft
+                        </button>
+                    </div>
+
+                    <div class="text-center mb-3">
+                        <small class="text-muted">OU USE SEU E-MAIL</small>
+                    </div>
+
+                    <form id="formLogin">
                         <div class="mb-3">
-                            <label class="form-label">E-mail</label>
-                            <input type="email" class="form-control" placeholder="seu@email.com">
+                            <input type="email" id="email" class="form-control" placeholder="E-mail" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Senha</label>
-                            <input type="password" class="form-control" placeholder="******">
+                            <input type="password" id="senha" class="form-control" placeholder="Senha" required>
                         </div>
-                        <button type="button" class="btn btn-primary w-100 mb-3" onclick="location.href='../app/dashboard.html'">Entrar</button>
-                        <div class="text-center">
-                            <a href="cadastro.html" class="small text-decoration-none">Não tem conta? Cadastre-se</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Entrar no Sistema</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Função que simula a autenticação
+        function loginSimulado(provedor) {
+            const usuario = {
+                nome: "Laboratório Alpha", // Nome que aparecerá no dashboard
+                email: provedor.toLowerCase() + "@lablink.com",
+                avatar: `https://ui-avatars.com/api/?name=Lab+Alpha&background=004aad&color=fff`,
+                auth_provider: provedor
+            };
+            
+            // Salva na memória do navegador
+            localStorage.setItem('lablink_session', JSON.stringify(usuario));
+            window.location.href = "../app/dashboard.html";
+        }
+
+        // Lógica do formulário padrão
+        document.getElementById('formLogin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            loginSimulado('E-mail');
+        });
+    </script>
 </body>
 </html>
