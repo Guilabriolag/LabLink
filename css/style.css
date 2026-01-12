@@ -1,0 +1,29 @@
+/* Variáveis para facilitar a mudança de cores */
+:root {
+    --primary: #004aad;
+    --secondary: #00c6ff;
+    --dark: #1a1a1a;
+    --light: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--dark);
+}
+
+.bg-lablink {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+}
+
+.card-plano:hover {
+    transform: translateY(-10px);
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
